@@ -19,7 +19,7 @@ export default function Home() {
   }, [])
 
   async function fetchPeople() {
-    const { data, error } = await supabase.from('thePeople').select('*')
+    const { data, error } = await supabase.from('People').select('*')
     if (error) console.error('Error fetching data:', error)
     else setPeople(data || [])
   }
@@ -27,7 +27,7 @@ export default function Home() {
   async function addPerson() {
     if (!name || !color) return
     const { error } = await supabase
-      .from('thePeople')
+      .from('People')
       .insert([{ name, favorite_color: color }])
 
     if (error) {
